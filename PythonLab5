@@ -1,0 +1,18 @@
+import unittest
+import sys
+
+def attack(enemy_health, weapon_damage):
+    return enemy_health - weapon_damage
+
+class TestGameLogic(unittest.TestCase):
+    def test_attack(self):
+        self.assertEqual(attack(30, 10), 20)
+        self.assertEqual(attack(10, 5), 5)
+        self.assertEqual(attack(5, 5), 0)
+        self.assertEqual(attack(0, 5), -5)  # Testing negative health case
+
+# Running the tests
+result = unittest.TextTestRunner().run(unittest.defaultTestLoader.loadTestsFromTestCase(TestGameLogic))
+
+# Exit condition
+sys.exit(0 if result.wasSuccessful() else 1)
